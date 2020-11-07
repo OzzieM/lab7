@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>Search</h1>
+    <form action="/search">
+    Keyword: 
+    <input type="text" name="keyword">
+
+    <select name="authorId" id="">
+        <option value="">Select Author</option>
+        
+        <% authors.forEach(element => { %>
+            <option value="<%- element.authorId %>"><%- element.firstName %> <%- element.lastName %></option>
+        <% }) %>
+    </select>
+    <select name="categories" id="">
+        <option value="">Select Category</option>
+        <% categories.forEach(element => { %>
+            <option value="<%- element.category %>"><%- element.category %></option>
+        <% }) %>
+    </select>
+
+    <button>Search</button>
+    </form>
+</body>
+</html>
