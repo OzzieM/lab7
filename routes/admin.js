@@ -68,11 +68,12 @@ router.get("/addQuote", async function(req,res){
             res.redirect("/admin/displayQuotes")
         }
         // let params = [req.query.firstName, req.query.lastName, req.query.biography];
-        let rows = await executeSQL(sql)
-        let rows2 = await executeSQL(sql2)
-    
-    
-    res.render('addQuote', {"authors": rows, "categories": rows2});
+        else{
+            let rows = await executeSQL(sql)
+            let rows2 = await executeSQL(sql2)
+            res.render('addQuote', {"authors": rows, "categories": rows2});
+        }
+  
 });
 
 router.get("/displayQuotes", async function(req,res) {
