@@ -13,26 +13,33 @@
 <body style="text-align: center; background-color: rgb(48, 48, 48); color: white;">
   <%- include('partials/nav.ejs') %> 
 
-    <h1>Search</h1>
-    <form action="/search">
-    Keyword: 
-    <input type="text" name="keyword">
- 
-    <select name="authorId" id="">
-        <option value="">Select Author</option>
-        
-        <% authors.forEach(element => { %>
-            <option value="<%- element.authorId %>"><%- element.firstName %> <%- element.lastName %></option>
-        <% }) %>
-    </select>
-    <select name="categories" id="">
-        <option value="">Select Category</option>
-        <% categories.forEach(element => { %>
-            <option value="<%- element.category %>"><%- element.category %></option>
-        <% }) %>
-    </select>
+    <h2>Adding a new quote</h2>
 
-    <button class="btn btn-info">Search</button>
+    <form action="/admin/updateQuote/submit">
+
+        Quote:<br>
+        <textarea name="quote" id="" cols="50" rows="2"><%= quotes[0].quote %></textarea>
+        <br>
+        Category:<br>
+        <select name="category" id="">
+            <% categories.forEach(element => { %>
+                <% if (element.category == quotes[0].category) { %>
+                    <option value="<%= element.category %>" selected><%= element.category %></option>
+                <% } else {%>
+                    <option value="<%= element.category %>"><%= element.category %></option>
+                <% } %>
+                  
+            <% }) %>
+        </select>
+        <br>
+        Likes:<br><input type="number" name="likes" value="<%= quotes[0].likes %>"> <br>
+        <button name="quoteId" value="<%= quotes[0].quoteId %>" class="btn btn-light" style="margin-top: 1em;">Update Quote</button>
     </form>
+
+
+    <div>
+
+         
+    </div>
 </body>
 </html>

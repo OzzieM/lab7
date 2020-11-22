@@ -13,26 +13,53 @@
 <body style="text-align: center; background-color: rgb(48, 48, 48); color: white;">
   <%- include('partials/nav.ejs') %> 
 
-    <h1>Search</h1>
-    <form action="/search">
-    Keyword: 
-    <input type="text" name="keyword">
- 
-    <select name="authorId" id="">
-        <option value="">Select Author</option>
-        
-        <% authors.forEach(element => { %>
-            <option value="<%- element.authorId %>"><%- element.firstName %> <%- element.lastName %></option>
-        <% }) %>
-    </select>
-    <select name="categories" id="">
-        <option value="">Select Category</option>
-        <% categories.forEach(element => { %>
-            <option value="<%- element.category %>"><%- element.category %></option>
-        <% }) %>
-    </select>
 
-    <button class="btn btn-info">Search</button>
-    </form>
+    <h1>Display Quotes</h1>
+
+    <div style="margin: 0 auto; width: 75%;">
+
+
+    <table class="table table-striped table-dark">
+      <thead>
+        <tr>
+          <th scope="col"></th>
+          <th scope="col"></th>
+          <th scope="col">Quote</th>
+          <th scope="col">Likes</th>
+        </tr>
+      </thead>
+      <tbody>
+        <% quotes.forEach(element => { %>
+        <tr>
+          <td>
+            <a href="/admin/updateQuote?quoteId=<%=element.quoteId%>">[Update]</a>
+          </td>
+          <td>
+            <a href="#" id="<%=element.quoteId%>" class="deleteQuote">[Delete]</a>
+          </td>
+          <td>
+            <%= element.quote %> 
+          </td>
+          <td>
+            <%= element.likes %>
+          </td>
+        </tr>
+        <% }) %>
+      </tbody>
+    </table>
+  </div>
+
+    <script>
+        $(".deleteQuote").on("click", function(){
+            let deleteQuote = confirm("Delete Quote ?");
+
+
+            if(deleteQuote){
+                alert("deleting record...")
+                window.location.href ="/admin/deleteQuote?quoteId="+$(this).attr("id");
+                // console.log($(this).attr("id"))
+            }
+        })
+    </script>
 </body>
 </html>

@@ -13,26 +13,37 @@
 <body style="text-align: center; background-color: rgb(48, 48, 48); color: white;">
   <%- include('partials/nav.ejs') %> 
 
-    <h1>Search</h1>
-    <form action="/search">
-    Keyword: 
-    <input type="text" name="keyword">
- 
-    <select name="authorId" id="">
-        <option value="">Select Author</option>
-        
-        <% authors.forEach(element => { %>
-            <option value="<%- element.authorId %>"><%- element.firstName %> <%- element.lastName %></option>
-        <% }) %>
-    </select>
-    <select name="categories" id="">
-        <option value="">Select Category</option>
-        <% categories.forEach(element => { %>
-            <option value="<%- element.category %>"><%- element.category %></option>
-        <% }) %>
-    </select>
+    <h2>Adding a new author</h2>
 
-    <button class="btn btn-info">Search</button>
+    <form action="/admin/addAuthor">
+        <!-- First Name:  -->
+        <input type="text" name="firstName" placeholder="First Name"><br>
+        <br>
+        <!-- Last Name: -->
+        <input type="text" name="lastName" placeholder="Last Name"><br>
+
+        Bio:<br>
+        <textarea name="biography" id="" cols="30" rows="2"></textarea>
+        <br>
+        Sex:<br>
+        <input type="radio" name="sex" value="F">Female  
+        <input type="radio" name="sex" value="M">Male
+        <br>
+        DOB: <br><input type="date" name="dob"><br>
+        DOD: <br><input type="date" name="dod"><br>
+        <br><input type="text" name="profession" placeholder="Profession"><br>
+        <br><input type="text" name="country" placeholder="Country">
+        <br>
+        <button name="" class="btn btn-light" style="margin-top: 1em;">Add a new Author</button>
     </form>
+
+
+    <div>
+        <% if (authorAdded) { %>
+            <h3>Author successfully added</h3>
+        <% } %>
+    
+         
+    </div>
 </body>
 </html>

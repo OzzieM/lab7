@@ -13,26 +13,35 @@
 <body style="text-align: center; background-color: rgb(48, 48, 48); color: white;">
   <%- include('partials/nav.ejs') %> 
 
-    <h1>Search</h1>
-    <form action="/search">
-    Keyword: 
-    <input type="text" name="keyword">
- 
-    <select name="authorId" id="">
-        <option value="">Select Author</option>
-        
-        <% authors.forEach(element => { %>
-            <option value="<%- element.authorId %>"><%- element.firstName %> <%- element.lastName %></option>
-        <% }) %>
-    </select>
-    <select name="categories" id="">
-        <option value="">Select Category</option>
-        <% categories.forEach(element => { %>
-            <option value="<%- element.category %>"><%- element.category %></option>
-        <% }) %>
-    </select>
+      <h2>Adding a new Quote</h2>
 
-    <button class="btn btn-info">Search</button>
+    <form action="/admin/addQuote">
+
+        Quote:<br>
+        <textarea name="quote" id="" cols="30" rows="2"></textarea>
+        <br>
+        Author:<br>
+        <select name="authorId" id="">
+            <% authors.forEach(element => { %>
+                <option value="<%-element.authorId%>"><%-element.firstName%> <%= element.lastName %> </option>
+            <% }) %>
+        </select>
+        <br>
+
+        Category:<br>
+        <select name="category" id="">
+            <% categories.forEach(element => { %>
+                <option value="<%-element.category%>"><%-element.category%></option>
+            <% }) %>
+        </select>
+        <br>
+
+        Likes:<br>
+        <input type="number" name="likes" id=""><br>
+
+        <button name="" class="btn btn-light" style="margin-top: 1em;">Add a new Quote</button>
     </form>
+
+
 </body>
 </html>

@@ -1,6 +1,6 @@
 const express = require('express');
 const router = express.Router();
-const mysql = require('mysql');
+const conn = require('../connection');
 
 router.get("/:authorId", async function(req, res){
     let authorId = req.params.authorId;
@@ -14,7 +14,6 @@ router.get("/:authorId", async function(req, res){
 async function getData(sql, params){
     
     return new Promise (function (resolve, reject) {
-    let conn = dbConnection();
     
     conn.query(sql, params, function (err, rows, fields) {
             if (err) throw err;
@@ -25,21 +24,6 @@ async function getData(sql, params){
 }//getData
     
     
-    //values in red must be updated
-function dbConnection(){
-
-    const pool  = mysql.createPool({
-
-        connectionLimit: 10,
-        host: "c584md9egjnm02sk.cbetxkdyhwsb.us-east-1.rds.amazonaws.com",
-        user: "lcr6tszz68cf1pfj",
-        password: "qujn2nyfn05j8tiv",
-        database: "ggxqk8ran2onnj4b"
-
-    }); 
-
-    return pool; 
-}
 
 
 module.exports = router;
